@@ -60,9 +60,19 @@ class App extends React.Component {
 
 	updateFish = (key, updatedFish) => {
 		// 1. Take a copy of current state (or state.fishes)
-		const fishes = {...this.state.fishes };
+		const fishes = { ...this.state.fishes };
 		// 2. Update the fishes[key] with the updatedFish
 		fishes[key] = updatedFish; 
+		// 3. Update the state with the new fishes by setState
+		this.setState({ fishes });
+	};
+
+	deleteFish = key => {
+		// 1. Take a copy of current state.fishes
+		const fishes = { ...this.state.fishes };
+		// 2. Delete fishes[key] by setting it to null
+		// so that Google Firebase will have it deleted too
+		fishes[key] = null;
 		// 3. Update the state with the new fishes by setState
 		this.setState({ fishes });
 	};
@@ -91,6 +101,7 @@ class App extends React.Component {
 				<Inventory
 					addFish={this.addFish}
 					updateFish={this.updateFish}
+					deleteFish={this.deleteFish}
 					loadSampleFishes={this.loadSampleFishes}
 					fishes={this.state.fishes}
 				/>
