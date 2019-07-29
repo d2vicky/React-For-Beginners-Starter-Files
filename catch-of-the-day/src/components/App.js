@@ -20,6 +20,7 @@ class App extends React.Component {
 	};
 
 	componentDidMount() {
+		// Now params is gonna be `this.props.match.params`!
 		const { params } = this.props.match;
 		// Reinstate our localStorage!!!
 		const localStorageRef = localStorage.getItem(params.storeID);
@@ -122,6 +123,7 @@ class App extends React.Component {
 					deleteFish={this.deleteFish}
 					loadSampleFishes={this.loadSampleFishes}
 					fishes={this.state.fishes}
+					storeID={this.props.match.params.storeID}
 				/>
 			</div>
 		);
